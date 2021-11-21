@@ -1,0 +1,85 @@
+{% extends 'navbar.html' %}
+{% block container %}
+
+        <section class="section cb p120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tagline-message page-title text-center">
+                            <h1 style='font-size:40px;'>Edulogy Əlaqə</h1>
+                        </div>
+                        
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section><!-- end section -->
+
+        <section class="section gb nopadtop">
+            <div class="container">
+                <div class="boxed boxedp4">
+                <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0"
+                        marginwidth="0"
+                        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=30%20H%C9%99s%C9%99n%20S%C9%99yidb%C9%99yli,%20Bak%C4%B1+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
+                    <div class="row contactv2 text-center">
+                        <div class="col-md-6">
+                            <div class="small-box">
+                                <i class="flaticon-email wow fadeIn"></i>
+                                <h4>Əlaqə Vasitələri</h4>
+                                <small>Telefon: +90 987 665 55 44</small>
+                                <small>Fax: +90 987 665 55 45</small>
+                                <p><a href="mail:to">info@yoursite.com</a></p>
+                            </div><!-- end small-box -->
+                        </div><!-- end col -->
+
+                        <div class="col-md-6">
+                            <div class="small-box">
+                                <i class="flaticon-map-with-position-marker wow fadeIn"></i>
+                                <h4>Ünvan</h4>
+                                <small>30 Həsən Səyidbəyli, </small>
+                                <small>Bakı Azərbaycan</small>
+                                <p><a href="#">Xəritədə bax</a></p>
+                            </div><!-- end small-box -->
+                        </div><!-- end col -->
+                    </div><!-- end contactv2 -->
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="section-title text-center">
+                                <h3>BİZİMLƏ ƏLAQƏ
+                                </h3>
+                                <p>Bizimlə maraqlandığınız üçün təşəkkür edirəm. Aşağıdakı vasitələrlə bizimlə əlaqə
+                                    saxlaya bilərsiniz.
+                                </p>
+                            </div><!-- end title -->
+
+                            {% if messages %}
+                                <ul class="messages alert-danger">
+                                    {% for message in messages %}
+                                       {% comment %} <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> {% endcomment %}
+                                       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                       <script>
+                                       Swal.fire({
+                                           'title':'Successful',
+                                           'text':'{{message}}',
+                                           'icon':'success'
+                                           })
+                                       </script>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            <form class="big-contact-form" method = 'POST' role="search">
+                                {% csrf_token %}
+                                    {{ form.name }}
+                                    {{ form.email }}
+                                    {{ form.phone }}
+                                    {{ form.subject}}
+                                    {{ form.mesage }}
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div>
+        </section>
+  {% endblock container %}
