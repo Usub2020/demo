@@ -15,14 +15,16 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Site Meta -->
-    <title>Edulogy</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Data Gate</title>
+    <meta name="keywords" content="Data data təlimləri data analitikası data kursu data dərsləri təlim data öyrən dərs">
+    <meta name="description" content="Data Gate Bizimlə Data Elmini Öyrənməyə Başla">
+    <meta name="author" content="Data Gate / Appland / Nasib Ahmadov">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="{% static 'images/webicon.ico' %}" type="image/x-icon" />
+    <link rel="icon" href="{% static 'images/webicon.ico' %}" type="image/x-icon">
+        
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
@@ -33,7 +35,7 @@
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
 
     <!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -87,170 +89,89 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="logo-normal">
-                            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a>
+                            <a class="navbar-brand" href="{% url 'home' %}">
+                                <img src="{% static 'images/web-logo.png' %}"
+                                    alt="logo-img" width="45px" height="45px">
+                                <h1>Data Gate</h1>
+                                
+                                </a>
                         </div>
                     </div>
 
                     <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav navbar-right text-center">
+
                             {% if home == 'home' %}
                             <li><a class='own-link selected_page' href="{% url 'home' %}">Əsas Səhifə</a></li>
-                        {% else %}
+                            {% else %}
                             <li><a class='own-link' href="{% url 'home' %}">Əsas Səhifə</a></li>
-                        {% endif %}
-                            
-                        {% if course == 'course'  %}
-                            <li><a class='own-link selected_page' href="{% url 'Courses' %}">Təlimlər</a></li>
-                        {% else %}
-                            <li><a class='own-link' href="{% url 'Courses' %}">Təlimlər</a></li>
-                        {% endif %}
-                            
-                        {% if blog_ == 'blog'  %}
-                            <li><a class='own-link selected_page' href="{% url 'Blogs' %}">Data Bloqu</a></li>
-                        {% else %}
-                            <li><a class='own-link ' href="{% url 'Blogs' %}">Data Bloqu</a></li>
-                        {% endif %}
+                            {% endif %}
 
-                        {% if contact == 'contact' %}
+                            {% if course == 'course' %}
+                            <li><a class='own-link selected_page' href="{% url 'Courses' %}">Təlimlər</a></li>
+                            {% else %}
+                            <li><a class='own-link' href="{% url 'Courses' %}">Təlimlər</a></li>
+                            {% endif %}
+
+                            {% if blog_ == 'blog' %}
+                            <li><a class='own-link selected_page' href="{% url 'Blogs' %}">Data Bloqu</a></li>
+                            {% else %}
+                            <li><a class='own-link ' href="{% url 'Blogs' %}">Data Bloqu</a></li>
+                            {% endif %}
+
+                            {% if contact == 'contact' %}
                             <li><a class='own-link selected_page' href="{% url 'contact' %}">Əlaqə</a></li>
-                        {% else %}
+                            {% else %}
                             <li><a class='own-link' href="{% url 'contact' %}">Əlaqə</a></li>
-                        {% endif %}
-                            </li>
+                            {% endif %}
+
+
                         </ul>
                     </div>
                 </nav><!-- end navbar -->
             </div><!-- end container -->
         </header>
 
-        <section class="section cb p120">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="breadcrumb">
-                            <li><a href="javascript:void(0)">Əsas səhifə</a></li>
-                            <li class="active">Data Bloqu</li>
-                        </ul>
-                        <div class="tagline-message page-title text-left">
-                            <h1 class='pg-title'>Data Bloqu</h1>
-                        </div>
-                    </div><!-- end col -->
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </section><!-- end section -->
 
-        <section style='margin-top:150px;' class="section gb nopadtop">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
 
-                    {% for blog in page_obj %}
-                    
-                        <div class="content blog-list">
-                            <div class="blog-wrapper clearfix">
-                                <div class="blog-meta">
-
-                                    <h3><a href="{% url 'Blog' blog.id %}" title="">{{blog.head}}</a></h3>
-                                    <ul class="list-inline">
-                                        <li>{{blog.date|timesince}}</li>
-                                        <li><span>written by</span> <a href="">Edulogy Team</a></li>
-                                    </ul>
-                                </div><!-- end blog-meta -->
-
-                                <div class="blog-media">
-                                    <a href="{% url 'Blog' blog.id %}" title=""><img src="{{ blog.image_ }}" alt=""
-                                            class="img-responsive img-rounded"></a>
-                                </div><!-- end media -->
-
-                                <div class="blog-desc-big">
-                                    <p> {{blog.title|truncatechars:250}}}} </p>
-                                    <a href="{% url 'Blog' blog.id %}" class="btn btn-primary">Etrafli oxu</a>
-                                </div><!-- end desc -->
-                            </div><!-- end blog -->
-                        </div><!-- end content -->
-
-                    {% endfor %}
-
-                        <div class="row">
-                            <div class="col-md-12">
-                        {% if page_obj.has_other_pages %}
-                            <ul class="pagination">
-                                {% if page_obj.has_previous %}
-                                    <li><a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">&laquo;</a></li>
-                                {% else %}
-                                    <li class="disabled"><span>&laquo;</span></li>
-                                {% endif %}
-                                {% for i in page_obj.paginator.page_range %}
-                                    {% if page_obj.number == i %}
-                                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
-                                        </li>
-                                    {% else %}
-                                        <li><a href="?page={{i}}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">{{ i }}</a></li>
-                                    {% endif %}
-                                {% endfor %}
-                                {% if page_obj.has_next %}
-                                    <li><a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">&raquo;</a></li>
-                                {% else %}
-                                    <li class="disabled"><span>&raquo;</span></li>
-                                {% endif %}
-                            </ul>
-                        {% endif %}
-                            </div><!-- end col -->
-                        </div><!-- end row -->
-                    </div><!-- end col -->
-
-                    <div class="sidebar col-md-4">
-                        <div class="widget clearfix">
-                            <div class="banner-widget">
-                                <img src="upload/banner.jpeg" alt="" class="img-responsive img-rounded">
+        <section class="section filter-section">
+            <!-- MAIN (Center website) -->
+            <div class="main">
+                <!-- Portfolio Gallery Grid -->
+                <div class="row" style="flex-wrap: wrap !important;">
+                {% for blog in blogs_pop %}
+                    <div class="col-sm-4 col-xs-12 column cars wow slideInLeft">
+                        <div class="content blog-img" style="word-wrap: break-word;">
+                            <img src="{{blog.image_}}" alt="blog-img" class="img-responsive">
+                            <h4 class="align">{{blog.head}}</h4>
+    
+                            <div class="blog-box-description">
+                                {{blog.title|safe|truncatechars:100}}
+                            </div>
+                            <div class="justify-content-center">
+                                <a href="{% url 'Blog' blog.id %}" class="btn btn-primary">Ətraflı</a>
                             </div>
                         </div>
-                        <div class="widget clearfix">
-                            <h3 class="widget-title">Ən çox oxunanlar</h3>
-                            <div class="post-widget">
+                    </div>
+                {% endfor %}
+                </div>
+                <!-- END MAIN -->
+            </div>
 
-                            {% for pop in blogs_pop|slice:":3" %}
-                            
-                                <div class="media">
-                                    <img src="{{pop.image.url}}" alt=""
-                                        class="img-responsive alignleft img-rounded">
-                                    <div class="media-body">
-                                        <h5 class="mt-0"><a href="{% url 'Blog' pop.id %}">{{pop.head|truncatechars:33}}</a>
-                                        </h5>
-                                        <div class="blog-meta">
-                                            <ul class="list-inline">
-                                                <li>{{pop.date|timesince}}</li>
-                                                <li><span>by</span> <a href="">Edulogy Team</a></li>
-                                            </ul>
-                                        </div><!-- end blog-meta -->
-                                    </div>
-                                </div>
-
-                            {% endfor %}
-
-                                
-
-
-                            </div><!-- end post-widget -->
-                        </div><!-- end widget -->
-                    </div><!-- end sidebar -->
-                </div><!-- end row -->
-            </div><!-- end container -->
         </section>
 
-   
-        
+
+
         <footer class="section footer noover">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-3">
                         <div class="widget clearfix">
-                            <img style='margin-top: -10px;border:none;' class="widget-title" src="{% static '/images/logo.png' %}"
-                                alt='logo' />
+                            <img style='margin-top: -10px;border:none;' class="widget-title"
+                                src="{% static '/images/logo.png' %}" alt='logo' />
                             <div class="list-widget">
                                 <p>
-                                    Data SoCool data analitikası və digər data sahələrində ixtisaslaşmış peşəkar tədris
-                                    mərkəzidir.
+                                    Data Gate data analitikası və <br> digər data elmi sahələrində ixtisaslaşmış peşəkar komandasıyla birgə fəaliyyət göstərən, müasir tələblərə cavab verən tədris mərkəzidir.
                                 </p>
                             </div><!-- end list-widget -->
                         </div><!-- end widget -->
@@ -260,24 +181,45 @@
                             <h3 class="widget-title">Təlimlərimiz</h3>
                             <div class="list-widget">
                                 <ul>
-                                {% for Course in Course|slice:"0:6" %}
+                                    {% for Course in Course|slice:"0:6" %}
                                     <li><a href="{% url 'Course' Course.id %}">{{Course.name}}</a></li>
-                                {% endfor %}
+                                    {% endfor %}
                                 </ul>
                             </div><!-- end list-widget -->
                         </div><!-- end widget -->
                     </div><!-- end col -->
                     <div class="col-lg-3 col-md-3">
                         <div class="widget clearfix">
-                            <h3 class="widget-title">Edulogy</h3>
+                            <h3 class="widget-title">Sosial şəbəkə</h3>
                             <div class="list-widget">
-                                <ul>
-                                    <li><a href="#">Haqqımızda</a></li>
-                                    <li><a href="#">Bloqlar</a></li>
-                                    <li><a href="#">Məxfilik siyasət</a></li>
-                                    <li><a href="#">İstifadə şərtləri</a></li>
+                                <ul class="list-inline">
+                                    <li>
+                                        <div class="social">
+
+                                                
+                                            <a href="https://www.facebook.com/datagate.mba"
+                                            target="_blank" data-tooltip="tooltip" data-placement="bottom"
+                                                title="Facebook"><i class="fa fa-facebook"></i>
+                                                <p>&nbsp Data Gate</p>
+                                            </a>
+                                            
+
+                                            
+                                            <a href="https://www.instagram.com/data.gate/" target="_blank" data-tooltip="tooltip" data-placement="bottom"
+                                                title="Instagram"><i class="fa fa-instagram"></i>
+                                                <p>&nbspData Gate</p>
+                                            </a>
+                                           
+                                            
+                                            <a href="https://www.youtube.com/channel/UCJ54Cy4GEY6pTKsFKZw8gyw" target="_blank" data-tooltip="tooltip" data-placement="bottom"
+                                            title="Youtube"><i class="fa fa-youtube"></i>
+                                            <p>&nbspData Gate</p>
+                                            </a>
+                                           
+                                        </div>
+                                    </li>
                                 </ul>
-                            </div><!-- end list-widget -->
+                            </div><!-- nd list-widget -->
                         </div><!-- end widget -->
                     </div><!-- end col -->
 
@@ -286,11 +228,12 @@
                             <h3 class="widget-title">Əlaqə</h3>
                             <div class="list-widget">
                                 <ul>
-                                    <li><a href="">+99499999</a></li>
-                                    <li><a href="mailto:edulogy@gmail.com">
-                                            edulogy@gmail.com</a></li>
-                                    <li><a href="">30 Həsən Səyidbəyli,
-                                            Bakı</a>
+                                    <li>
+                                        <i class="fa fa-phone"></i> +994775732259</li>
+                                    <li>
+                                        <a href="mailto:info@datagate.edu.az">
+                                            <i class="fa fa-envelope"></i> info@datagate.edu.az</a></li>
+                                    <li><i class="fa fa-map"></i> Suleyman Rahimov 1009, Bakı, Azərbaycan
                                     </li>
 
                                 </ul>
@@ -306,45 +249,87 @@
                 <div class="clearfix">
                     <div class="pull-left">
                         <div class="cop-logo">
-                            <p>Copyright ©2021 Bütün hüquqlar qorunur | Developed by <a style='color:grey;'
-                                    href='https://www.facebook.com/profile.php?id=100005770751769'>Murad Aliyev</a></p>
+                            <p>Copyright ©2022 Bütün hüquqlar qorunur | Developed by 
+                                <a 
+                                style='color:#fff;'
+                                href='#'
+                                >Appland</a></p>
                         </div>
                     </div>
 
-                    <div class="pull-right">
-                        <div class="footer-links">
-                            <ul class="list-inline">
-                                <li>
-                                    <div class="social">
-                                        <a class="facebook" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Facebook"><i class="fa fa-facebook"></i></a>
-                                        <a class="twitter" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Twitter"><i class="fa fa-twitter"></i></a>
-                                        <a class="google" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Google Plus"><i class="fa fa-google-plus"></i></a>
-                                        <a class="linkedin" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                                        <a class="pinterest" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Pinterest"><i class="fa fa-pinterest"></i></a>
-                                    </div><!-- end social -->
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                   
                 </div>
             </div><!-- end container -->
         </div><!-- end copy -->
     </div><!-- end wrapper -->
+
+
+
 
     <!-- jQuery Files -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/carousel.js' %}"></script>
     <script src="{% static 'js/animate.js' %}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true
+        })
+    </script>
     <script src="{% static 'js/custom.js' %}"></script>
     <!-- VIDEO BG PLUGINS
     <script src="js/videobg.js"></script> -->
 
+    <script>
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("column");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+
+        // Add active class to the current button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+
+                <!-- !!! -->
+    <!-- By Nasib Ahmadov / nasibahmadov.me -->
+                <!-- !!! -->
 </body>
 
 </html>

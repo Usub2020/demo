@@ -28,11 +28,13 @@ def contact_ (request):
 
     return render(request, 'page-contact.html', context)
 
+
+
 def Courses_ (request):
-    Course = Courses.objects.filter(available = True)
-    paginator = Paginator(Course, 5) 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    page_obj = Courses.objects.filter(available = True)
+    # paginator = Paginator(Course, 5) 
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
     # for i , s , h in zip(Course.values_list('end_day',flat=True),Course.values_list('id',flat=True),Course.values_list('available',flat=True)) :
     #     if h :
     #         start = []

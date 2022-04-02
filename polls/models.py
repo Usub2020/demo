@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.base import Model
 from django.template.defaultfilters import slugify, title
+from ckeditor.fields import RichTextField
 from unidecode import unidecode
 # import datetime
 
@@ -21,7 +22,7 @@ class Student_comment(models.Model):
 class Blog(models.Model):
     id = models.AutoField(primary_key=True)
     head = models.CharField(max_length=250,null=True,verbose_name="Baslig")
-    title = models.TextField()
+    title = RichTextField(verbose_name='Description', null=True, blank=True)
     image = models.ImageField(upload_to='polls/%Y/%M/%D/%H/%M/%S',null=False,blank=True,verbose_name='Image')
     category = models.CharField(max_length=1000,null=True,verbose_name="Kategoriya",help_text="Her Categoryden sonra - qoyun")
     date = models.DateTimeField(auto_now_add=True)
@@ -35,7 +36,12 @@ class Blog(models.Model):
         return split
     
     def image_(self):
-        return "/media/%s" % (self.image)
+        if self.image :
+            return self.image.url
+        else : 
+            return '/media/default-product.jpg'
+
+    
 
     class Meta:
         verbose_name = 'Blog'
@@ -55,7 +61,7 @@ class Courses(models.Model):
 
     category = models.CharField(max_length=250, null=True ,verbose_name='Category',help_text='Her Categoryden sonra - qoyun')
     image = models.ImageField(upload_to='Courses_image/%Y/%M/%D/%H/%M/%S',null=False,blank=True,verbose_name='Course Image')
-    information = models.TextField(blank=True,unique=False)
+    information = RichTextField(verbose_name='Description', null=True, blank=True)
     price = models.IntegerField(verbose_name='Course Price',null=True)
     create_date = models.DateTimeField(auto_now_add=True,verbose_name="Created Date")
     update_date = models.DateTimeField(auto_now=True,verbose_name='Update Date')
@@ -70,6 +76,12 @@ class Courses(models.Model):
 
     def melumat(self):
         return self.bolgu.all()
+
+    def get_image(self):
+        if self.image :
+            return self.image.url
+        else : 
+            return '/media/default-product.jpg'
 
     class Meta:
         verbose_name = 'Course'

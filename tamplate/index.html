@@ -1,181 +1,223 @@
 {% extends 'navbar.html' %}
 {%block container%}
-        <section id="home" class="video-section js-height-full">
-            <!---->
-            <div class="overlay"></div>
-            <div class="home-text-wrapper relative container">
-                <div class="home-message">
-                    <p>Peşəkar Data Analitikası bacarıqlarına yiyələn</p>
-                    <div class="btn-wrapper">
+
+<section class="video-section" id="home">
+    <!-- <div class="absolute-circle"></div> -->
+    <div class="absolute-circle2"></div>
+    <div class="container-fluid ">
+        <div class="row blue-bg">
+            <div class="col-sm-4 col-12 padding-top-left wow slideInLeft">
+                <div class="container">
+                    <h1 
+                    style="color: #000; font-size: 36px; position: relative; z-index: 1; letter-spacing: 4px;"
+                    >
+                        BİZİMLƏ <br>
+                        DATA ELMİNİ <br>
+                        ÖYRƏNMƏYƏ BAŞLA!</h1>
+                    <div class="btn-wrapper responsive-btn">
                         <div class="text-left">
-                            <a href="{% url 'Courses' %}" class="btn btn-warning wow slideInLeft">Təlimlərlə tanış ol</a>
+                            <a href="{% url 'Courses' %}" 
+                                class="btn btn-warning"
+                                style="
+                                padding: 1.8rem; 
+                                margin-top: 27px; 
+                                letter-spacing: 3px;
+                                "
+                                >TƏLİMLƏRİMİZ</a>
                         </div>
-                    </div><!-- end row -->
-                </div>
-            </div>
-        </section>
-        <section class='section'>
-            <div class="container">
-                <div class="section-title text-center">
-                    <h3>Biz kimik?</h3>
-                    <p>Biz Azərbaycanda data elminin inkişafını təmin etməyi qarşısına məqsəd qoyan, aşağıdakı dəyərlər
-                        əsasında fəaliyyət göstərən data təlim şirkətiyik.</p>
-                </div>
-                <div style='margin-left: 6%;' class="row text-center">
-                    <div class="col-md-4">
-                        <div class="whoarebox">
-                            <h3>Vizyonumuz</h3>
-                            <p>Azərbaycada Data elminin inkişafına nail olmaq</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="whoarebox">
-                            <h3>Missiyamız</h3>
-                            <p>Tətbiq etdiyimiz təlim metodikası vasitəsilə qlobal bazarın tələb etdiyi keyfiyyətlərə
-                                sahib
-                                professional kadrlar
-                                yetişdirmək</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="whoarebox">
-                            <h3>Dəyərlərimiz
-                            </h3>
-                            <p>Səmimiyyət, etibar, faydalılıq</p>
-                        </div>
+
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="col-sm-8 col-12 justify-content-center img-top">
+                <img src="../static/images/1.png" class="img-home img-responsive" alt="">
+            </div>
+        </div>
+    </div>
+</section>
 
-        <section class="section gb">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h3>Təlimlər</h3>
-                </div><!-- end title -->
-
-                <div id="owl-01" class="owl-carousel owl-theme owl-theme-01">
-
-                    
-{% for course in courses %}
-                    <div class="caro-item">
-                        <div class="course-box">
-                            <div class="image-wrap entry">
-                                <img src="{{course.image.url}}" alt="" class="img-responsive">
-                                <div class="magnifier">
-                                    <a href="{% url 'Course' course.id %}" title=""><i class="flaticon-add"></i></a>
-                                </div>
-                            </div><!-- end image-wrap -->
-                            <div class="course-details">
-                                <h4>
-                                    <small>{{course.category}}</small>
-                                    <a href="{% url 'Course' course.id %}" title="">{{course.name}}</a>
-                                </h4>
-                                <p>{{course.information}}</p>
-                            </div><!-- end details -->
-                            <div class="course-footer clearfix">
-                                <div class="pull-left">
-                                    <ul class="list-inline">
-                                        <li><a href="{% url 'Course' course.id %}"><i class="fa fa-clock-o"></i> {{course.courses_hours}} Min.</a></li>
-                                    </ul>
-                                </div><!-- end left -->
-
-                                <div class="pull-right">
-                                    <ul class="list-inline">
-                                        <li><a href="{% url 'Course' course.id %}">${{course.standart_price}}</a></li>
-                                    </ul>
-                                </div><!-- end left -->
-                            </div><!-- end footer -->
-                        </div><!-- end box -->
-                    </div><!-- end col -->
-{% endfor %}
-
-                </div><!-- end row -->
-
-                <hr class="invis">
-
-                <div class="section-button text-center">
-                    <a href="{% url 'Courses' %}" class="btn btn-primary">Bütün təlimlər</a>
+<section class='section section-divs'>
+    <div class="container">
+        <div class="section-title text-center">
+            <h3 data-aos="fade-right" data-aos-easing="linear" data-aos-duration="3000">Biz kimik?</h3>
+            <div class="line1">
+                <div class="line"></div>
+            </div>
+            <p>Biz ölkəmizdə data elminin inkişafını təmin etməyi qarşısına məqsəd qoyan və seçilmiş dəyərlər
+                əsasında fəaliyyət göstərən data təlim mərkəziyik.</p>
+        </div>
+        <div class="row text-center responsive">
+            <div class="col-md-4 col-12">
+                <div class="whoarebox" data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="linear">
+                    <h3><i class="fas fa-check-square"></i> Vizyonumuz </h3>
+                    <p class="p-p">Data elmini tədris etmək, sizlərə yeni bacarıqlar qazandırmaq və data sahəsinin inkişafına nail olmaq</p>
                 </div>
-            </div><!-- end container -->
-        </section>
-
-
-
-        <section class="section">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h3>Tələbələrimiz nə düşünür?</h3>
-                </div><!-- end title -->
-                <div class="row">
-                    <div id="owl-02" class="owl-carousel owl-theme  owl-theme-01">
-
-
-
-                        {% for student in student %}
-                        <div class="caro-item">
-
-                            
-                                <div class="box testimonial">
-                                    <p class="testiname"><strong><img src="" alt=""
-                                                class="img-circle">
-                                            {{student.student}}</strong></p>
-                                    <p>{{student.title}}</p>
-                                </div><!-- end testimonial -->
-                         
-                        </div>
-                        {% endfor %}
-
-
-
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="whoarebox" data-aos="zoom-in" data-aos-duration="2000" data-aos-easing="linear">
+                    <h3><i class="fas fa-check-square"></i> Missiyamız </h3>
+                    <p class="padding-p-left">Tətbiq etdiyimiz təlim metodikası vasitəsilə
+                       müasir bacarıqlara və keyfiyyətlərə sahib kadrlar yetişdirmək</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="whoarebox" data-aos="zoom-in" data-aos-duration="3000" data-aos-easing="linear">
+                    <h3><i class="fas fa-check-square"></i> Dəyərlərimiz </h3>
+                    <div class="d-flex" style="margin-top: 0;">
+                        <p>Keyfiyyət və zəmanət <br/>
+                        Daim səmimiyyət <br/>
+                        Güvən və etibar <br/>
+                        Peşəkar komanda 
+                        </p>
                     </div>
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section gb">
+    <div class="container">
+        <div class="section-title text-center">
+            <h3 data-aos="fade-right" data-aos-easing="linear" data-aos-duration="3000">Təlimlər</h3>
+            <div class="line1">
+                <div class="line"></div>
+            </div>
+        </div><!-- end title -->
+
+        <div id="owl-01" class="owl-carousel owl-theme owl-theme-01">
+
+            {% for course in courses %}
+
+            <div class="caro-item">
+                <div class="course-box">
+                    <a href="{% url 'Course' course.id %}" class="image-wrap">
+                        <img src="{{course.get_image}}" alt="course-img" class="img-responsive">
+                        
+                    </a>
+                    <div class="course-details">
+                        <h4>
+                            <small>{{course.category}}</small>
+                            <a href="{% url 'Course' course.id %}" title="">{{course.name}}</a>
+                        </h4>
+                        <div class="course-desciption">
+                            {{course.information|safe|truncatechars:50}}
+                        </div>
+                    </div>
+                    <div class="course-footer clearfix">
+                        <div class="pull-left">
+                            <ul class="list-inline">
+                                <li>  
+                                    <i class="fa fa-clock-o"></i>
+                                        {{course.courses_hours}} saat
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pull-right">
+                            <ul class="list-inline">
+                                <li>{{course.standart_price}} AZN</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <!-- end row -->
+
+        <hr class="invis">
+
+        <div class="section-button text-center">
+            <a href="{% url 'Courses' %}" class="btn btn-primary">Bütün təlimlər</a>
+        </div>
+    </div><!-- end container -->
+</section>
+
+
+
+<section class="section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h3 data-aos="fade-right" data-aos-easing="linear" data-aos-duration="3000">Tələbələrimiz nə düşünür?</h3>
+            <div class="line1">
+                <div class="line2"></div>
+            </div>
+        </div><!-- end title -->
+        <div class="row">
+            <div id="owl-02" class="owl-carousel owl-theme  owl-theme-01">
+
+
+
+                {% for student in student %}
+                <div class="caro-item">
+
+
+                    <div class="box testimonial">
+                        <p class="testiname"><strong><img src="" alt="" class="img-circle">
+                                {{student.student}}</strong></p>
+                        <p>{{student.title|truncatechars:100}}</p>
+                    </div><!-- end testimonial -->
+                </div>
+                {% endfor %}
+
+                <div class="owl-nav"></div>
+
+
+            </div>
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
 
 
 
 
 
 
-        <section class="section gb">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h3>Xəbərlər</h3>
-                </div><!-- end title -->
 
-                <div class="row">
-                    
-{% for blog in blog %}
-                    <div class="col-lg-4 col-md-12">
-                        <div class="blog-box">
-                            <div class="image-wrap entry">
-                                <img src="{{blog.image.url}}" alt="" class="img-responsive">
-                                <div class="magnifier">
-                                    <a href="{% url 'Blog' blog.id %}" title=""><i class="flaticon-add"></i></a>
-                                </div>
-                            </div><!-- end image-wrap -->
+<section class="section gb">
+    <div class="container">
+        <div class="section-title text-center">
+            <h3 data-aos="fade-right" data-aos-easing="linear" data-aos-duration="3000">Blog</h3>
+            <div class="line1">
+                <div class="line"></div>
+            </div>
 
-                            <div class="blog-desc">
-                                <h4><a href="{% url 'Blog' blog.id %}">{{blog.head}}</a></h4>
-                                <p>{{blog.title}} </p>
-                            </div><!-- end blog-desc -->
+        </div>
 
-                            <div class="post-meta">
-                                <ul class="list-inline">
-                                    <li><a href="{% url 'Blog' blog.id %}">{{blog.date|date:"d M, Y"}}</a></li>
-                                    <li><a href="{% url 'Blog' blog.id %}">by WP Destek</a></li>
-                                    <li><a href="{% url 'Blog' blog.id %}">{{blog.click}} Baxış</a></li>
-                                </ul>
-                            </div><!-- end post-meta -->
-                        </div><!-- end blog -->
-                    </div><!-- end col -->
-{% endfor %}
+        <div class="row">
+
+            {% for blog in blog %}
+            <div class="col-lg-4 col-sm-6 col-xs-12" style="margin-top: 1rem;">
+                <div class="blog-box">
+                    <a href="{% url 'Blog' blog.id %}" class="image-wrap entry">
+                        <img src="{{blog.image_}}" alt="blog-img" class="img-responsive">
+                        
+                    </a>
+
+                    <div class="blog-desc">
+                        <small>{{blog.category}}</small>
+                        <h4><a href="{% url 'Blog' blog.id %}">{{blog.head}}</a></h4>
+                        <p>{{blog.title|safe|truncatechars:100}} </p>
+                    </div>
+
+                    <div class="post-meta">
+                        <ul class="list-inline">
+                            <li><a href="{% url 'Blog' blog.id %}">{{blog.date|date:"d M, Y"}}</a></li>
+                            <li><a href="{% url 'Blog' blog.id %}">by WP Destek</a></li>
+                            <li><a href="{% url 'Blog' blog.id %}">{{blog.click}} Baxış</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
 
 
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </section>
+        </div>
+    </div>
+</section>
 
 
 {%endblock container%}

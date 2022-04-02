@@ -15,14 +15,15 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Site Meta -->
-    <title>Edulogy</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Data Gate</title>
+    <meta name="keywords" content="Data data təlimləri data analitikası data kursu data dərsləri təlim data öyrən dərs">
+    <meta name="description" content="Data Gate Bizimlə Data Elmini Öyrənməyə Başla">
+    <meta name="author" content="Data Gate / Appland / Nasib Ahmadov">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="{% static 'images/webicon.ico' %}" type="image/x-icon" />
+    <link rel="icon" href="{% static 'images/webicon.ico' %}" type="image/x-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
@@ -33,7 +34,7 @@
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
 
     <!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -87,13 +88,19 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="logo-normal">
-                            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a>
+                            <a class="navbar-brand" href="{% url 'home' %}">
+                                <img src="{% static 'images/web-logo.png' %}"
+                                    alt="logo-img" width="45px" height="45px">
+                                <h1>Data Gate</h1>
+                                
+                                </a>
                         </div>
                     </div>
 
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            {% if home == 'home' %}
+                    <div id="navbar" class="navbar-collapse collapse" >
+                        <ul class="nav navbar-nav navbar-right text-center" >
+
+                        {% if home == 'home' %}
                             <li><a class='own-link selected_page' href="{% url 'home' %}">Əsas Səhifə</a></li>
                         {% else %}
                             <li><a class='own-link' href="{% url 'home' %}">Əsas Səhifə</a></li>
@@ -116,72 +123,69 @@
                         {% else %}
                             <li><a class='own-link' href="{% url 'contact' %}">Əlaqə</a></li>
                         {% endif %}
-                            </li>
+                            
+
                         </ul>
                     </div>
                 </nav><!-- end navbar -->
             </div><!-- end container -->
         </header>
+        
 
-        <section class="section cb">
+        <section class="section divs">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="breadcrumb">
-                            <li><a href="javascript:void(0)">Əsas səhifə</a></li>
-                            <li class="active">Təlimlər</li>
-                        </ul>
-                        <div class="tagline-message page-title">
-                            <h1 class='pg-title'>Təlimlər</h1>
-                        </div>
-                    </div><!-- end col -->
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </section><!-- end section -->
-
-
-
-        <section class='section'>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-
-                    {% for page_obj in page_obj %}
-                        
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img style='width:218px;height:218px' src='{{page_obj.image.url}}'
-                                        alt='avatar_telim' />
+                <div class="row" style="flex-wrap: wrap;">
+                    {% for course in page_obj %}
+                    <div class="col-sm-4 col-xs-12 border wow slideInLeft">
+                       
+                        <div class="course-box" style="margin-top: 2rem;">
+                            <a href="{% url 'Course' course.id %}" class="image-course">
+                                <img src="{{course.get_image}}" alt="course-img" class="img-responsive">
+                                
+                            </a>
+                            <div class="course-details">
+                                <h4>
+                                    <small>{{course.category}}</small>
+                                    <a href="{% url 'Course' course.id %}" title="">{{course.name}}</a>
+                                </h4>
+                                <div class="course-desciption">
+                                    {{course.information|safe|truncatechars:100}}
                                 </div>
-                                <div class="col-md-8">
-                                    <h2>{{page_obj.name}}</h2>
-                                    <p class='about_course'>{{page_obj.information|truncatechars:90}}</p>
-                                    <a href='{% url "Course" page_obj.id %}' class='btn btn-warning'>Etrafli</a>
+                            </div>
+                            <div class="course-footer clearfix">
+                                <div class="pull-left">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <i class="fa fa-clock-o"></i>
+                                                {{course.courses_hours}} saat
+                                        </li>
+                                    </ul>
+                                </div>
+        
+                                <div class="pull-right">
+                                    <ul class="list-inline">
+                                        <li>{{course.standart_price}} AZN</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-
+                    </div>
                     {% endfor %}
 
-                    </div>
                 </div>
             </div>
-
         </section>
-
 
         <footer class="section footer noover">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-3">
                         <div class="widget clearfix">
-                            <img style='margin-top: -10px;border:none;' class="widget-title" src="{% static '/images/logo.png' %}"
-                                alt='logo' />
+                            <img style='margin-top: -10px;border:none;' class="widget-title"
+                                src="{% static '/images/logo.png' %}" alt='logo' />
                             <div class="list-widget">
                                 <p>
-                                    Data SoCool data analitikası və digər data sahələrində ixtisaslaşmış peşəkar tədris
-                                    mərkəzidir.
+                                    Data Gate data analitikası və <br> digər data elmi sahələrində ixtisaslaşmış peşəkar komandasıyla birgə fəaliyyət göstərən, müasir tələblərə cavab verən tədris mərkəzidir.
                                 </p>
                             </div><!-- end list-widget -->
                         </div><!-- end widget -->
@@ -191,24 +195,45 @@
                             <h3 class="widget-title">Təlimlərimiz</h3>
                             <div class="list-widget">
                                 <ul>
-                                {% for Course in page_obj|slice:"0:6"  %}
+                                    {% for Course in page_obj|slice:"0:6" %}
                                     <li><a href="{% url 'Course' Course.id %}">{{Course.name}}</a></li>
-                                {% endfor %}
+                                    {% endfor %}
                                 </ul>
                             </div><!-- end list-widget -->
                         </div><!-- end widget -->
                     </div><!-- end col -->
                     <div class="col-lg-3 col-md-3">
                         <div class="widget clearfix">
-                            <h3 class="widget-title">Edulogy</h3>
+                            <h3 class="widget-title">Sosial şəbəkə</h3>
                             <div class="list-widget">
-                                <ul>
-                                    <li><a href="#">Haqqımızda</a></li>
-                                    <li><a href="#">Bloqlar</a></li>
-                                    <li><a href="#">Məxfilik siyasət</a></li>
-                                    <li><a href="#">İstifadə şərtləri</a></li>
+                                <ul class="list-inline">
+                                    <li>
+                                        <div class="social">
+
+                                                
+                                            <a href="https://www.facebook.com/datagate.mba"
+                                            target="_blank" data-tooltip="tooltip" data-placement="bottom"
+                                                title="Facebook"><i class="fa fa-facebook"></i>
+                                                <p>&nbsp Data Gate</p>
+                                            </a>
+                                            
+
+                                            
+                                            <a href="https://www.instagram.com/data.gate/" target="_blank" data-tooltip="tooltip" data-placement="bottom"
+                                                title="Instagram"><i class="fa fa-instagram"></i>
+                                                <p>&nbspData Gate</p>
+                                            </a>
+                                           
+                                            
+                                            <a href="https://www.youtube.com/channel/UCJ54Cy4GEY6pTKsFKZw8gyw" target="_blank" data-tooltip="tooltip" data-placement="bottom"
+                                            title="Youtube"><i class="fa fa-youtube"></i>
+                                            <p>&nbspData Gate</p>
+                                            </a>
+                                           
+                                        </div>
+                                    </li>
                                 </ul>
-                            </div><!-- end list-widget -->
+                            </div><!-- <!-- end list-widget -->
                         </div><!-- end widget -->
                     </div><!-- end col -->
 
@@ -217,11 +242,19 @@
                             <h3 class="widget-title">Əlaqə</h3>
                             <div class="list-widget">
                                 <ul>
-                                    <li><a href="">+99499999</a></li>
-                                    <li><a href="mailto:edulogy@gmail.com">
-                                            edulogy@gmail.com</a></li>
-                                    <li><a href="">30 Həsən Səyidbəyli,
-                                            Bakı</a>
+                                    <li>
+                                        <i class="fa fa-phone"></i> 
+                                        +994775732259
+                                    </li>
+                                    <li>
+                                        <a href="mailto:info@datagate.edu.az">
+                                            <i class="fa fa-envelope"></i> 
+                                            info@datagate.edu.az
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-map"></i> 
+                                        Suleyman Rahimov 1009, Bakı, Azərbaycan
                                     </li>
 
                                 </ul>
@@ -237,31 +270,15 @@
                 <div class="clearfix">
                     <div class="pull-left">
                         <div class="cop-logo">
-                            <p>Copyright ©2021 Bütün hüquqlar qorunur | Developed by <a style='color:grey;'
-                                    href='https://www.facebook.com/profile.php?id=100005770751769'>Murad Aliyev</a></p>
+                            <p>Copyright ©2022 Bütün hüquqlar qorunur | Developed by 
+                                <a 
+                                style='color:#fff;'
+                                href='#'
+                                >Appland</a></p>
                         </div>
                     </div>
 
-                    <div class="pull-right">
-                        <div class="footer-links">
-                            <ul class="list-inline">
-                                <li>
-                                    <div class="social">
-                                        <a class="facebook" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Facebook"><i class="fa fa-facebook"></i></a>
-                                        <a class="twitter" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Twitter"><i class="fa fa-twitter"></i></a>
-                                        <a class="google" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Google Plus"><i class="fa fa-google-plus"></i></a>
-                                        <a class="linkedin" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                                        <a class="pinterest" href="#" data-tooltip="tooltip" data-placement="bottom"
-                                            title="Pinterest"><i class="fa fa-pinterest"></i></a>
-                                    </div><!-- end social -->
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                   
                 </div>
             </div><!-- end container -->
         </div><!-- end copy -->
@@ -272,10 +289,19 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/carousel.js' %}"></script>
     <script src="{% static 'js/animate.js' %}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true
+        })
+    </script>
     <script src="{% static 'js/custom.js' %}"></script>
     <!-- VIDEO BG PLUGINS
     <script src="js/videobg.js"></script> -->
 
+                <!-- !!! -->
+    <!-- By Nasib Ahmadov / nasibahmadov.me -->
+                <!-- !!! -->
 </body>
 
 </html>
